@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plano Alimentar</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Dashboard para gerenciamento de plano alimentar saudável">
+    <meta name="theme-color" content="#4F46E5">
+
+    <!-- Apple iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Plano Alimentar">
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+    <link rel="manifest" href="manifest.json">
+
     <style>
         /* ===================================
            DESIGN SYSTEM - Tokens
@@ -691,6 +707,17 @@
             line-height: 1.6;
         }
 
+        .meal__calories {
+            display: inline-block;
+            font-size: var(--text-xs);
+            font-weight: var(--font-semibold);
+            color: var(--color-gray-500);
+            background: var(--color-gray-100);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            margin-top: var(--space-2);
+        }
+
         /* ===================================
            TIPS
            =================================== */
@@ -757,6 +784,202 @@
 
         .tip-card--success .tip-card__item::before {
             color: var(--color-success);
+        }
+
+        /* ===================================
+           PROFILE
+           =================================== */
+        .profile-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        @media (min-width: 640px) {
+            .profile-form {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .profile-input-group:last-of-type {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .profile-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .profile-label {
+            font-size: var(--text-sm);
+            font-weight: var(--font-medium);
+            color: var(--color-gray-700);
+        }
+
+        .profile-input,
+        .profile-select {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            font-size: var(--text-base);
+            border: 2px solid var(--color-gray-300);
+            border-radius: var(--radius-md);
+            background: var(--color-white);
+            color: var(--color-gray-900);
+            transition: all var(--transition-base);
+            font-family: var(--font-sans);
+        }
+
+        .profile-input:focus,
+        .profile-select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-light);
+        }
+
+        .profile-input::placeholder {
+            color: var(--color-gray-400);
+        }
+
+        .profile-radio-group {
+            display: flex;
+            gap: var(--space-6);
+            padding-top: var(--space-2);
+        }
+
+        .profile-radio-label {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            cursor: pointer;
+            font-size: var(--text-base);
+            color: var(--color-gray-700);
+        }
+
+        .profile-radio {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--color-primary);
+        }
+
+        .profile-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: flex-end;
+            padding-top: var(--space-4);
+        }
+
+        /* Profile Summary */
+        .profile-summary {
+            margin-top: var(--space-8);
+            padding-top: var(--space-8);
+            border-top: 2px solid var(--color-gray-200);
+        }
+
+        .profile-summary__title {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-semibold);
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-6);
+        }
+
+        .profile-summary__alert {
+            background: var(--color-primary-light);
+            border: 1px solid var(--color-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            font-size: var(--text-sm);
+            color: var(--color-gray-700);
+            margin-bottom: var(--space-6);
+        }
+
+        .profile-summary-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        @media (min-width: 640px) {
+            .profile-summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .profile-summary-item {
+            background: var(--color-gray-50);
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            text-align: center;
+        }
+
+        .profile-summary-item__label {
+            font-size: var(--text-xs);
+            color: var(--color-gray-600);
+            margin-bottom: var(--space-2);
+            font-weight: var(--font-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-summary-item__value {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-bold);
+            color: var(--color-gray-900);
+        }
+
+        .profile-summary-item__value--primary {
+            color: var(--color-primary);
+            font-size: var(--text-3xl);
+        }
+
+        .profile-distribution {
+            background: var(--color-gray-50);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+        }
+
+        .profile-distribution__title {
+            font-size: var(--text-lg);
+            font-weight: var(--font-semibold);
+            color: var(--color-gray-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .profile-distribution-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .profile-distribution-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3);
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+        }
+
+        .profile-distribution-item__icon {
+            font-size: var(--text-xl);
+            flex-shrink: 0;
+        }
+
+        .profile-distribution-item__label {
+            flex: 1;
+            font-size: var(--text-sm);
+            color: var(--color-gray-700);
+        }
+
+        .profile-distribution-item__value {
+            font-size: var(--text-base);
+            font-weight: var(--font-semibold);
+            color: var(--color-primary);
         }
 
         /* ===================================
@@ -862,6 +1085,14 @@
                 aria-controls="cardapio-panel"
                 onclick="showTab('cardapio', event)">
                 📅 Cardápio Semanal
+            </button>
+            <button
+                class="tabs__button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="perfil-panel"
+                onclick="showTab('perfil', event)">
+                👤 Perfil
             </button>
             <button
                 class="tabs__button"
@@ -1280,6 +1511,136 @@
             </div>
         </div>
 
+        <!-- Tab: Perfil -->
+        <div id="perfil-panel" class="tab-content" role="tabpanel">
+            <div class="card">
+                <div class="card__header">
+                    <h2 class="card__title">Meu Perfil</h2>
+                </div>
+                <div class="card__body">
+                    <form id="profile-form" class="profile-form" onsubmit="saveProfile(event)">
+                        <div class="profile-input-group">
+                            <label for="weight" class="profile-label">Peso (kg)</label>
+                            <input
+                                type="number"
+                                id="weight"
+                                name="weight"
+                                class="profile-input"
+                                min="30"
+                                max="300"
+                                step="0.1"
+                                placeholder="Ex: 75"
+                                required>
+                        </div>
+
+                        <div class="profile-input-group">
+                            <label for="height" class="profile-label">Altura (cm)</label>
+                            <input
+                                type="number"
+                                id="height"
+                                name="height"
+                                class="profile-input"
+                                min="100"
+                                max="250"
+                                placeholder="Ex: 175"
+                                required>
+                        </div>
+
+                        <div class="profile-input-group">
+                            <label for="age" class="profile-label">Idade (anos)</label>
+                            <input
+                                type="number"
+                                id="age"
+                                name="age"
+                                class="profile-input"
+                                min="10"
+                                max="120"
+                                placeholder="Ex: 30"
+                                required>
+                        </div>
+
+                        <div class="profile-input-group">
+                            <label class="profile-label">Sexo</label>
+                            <div class="profile-radio-group">
+                                <label class="profile-radio-label">
+                                    <input type="radio" name="sex" value="male" class="profile-radio" required>
+                                    <span>Masculino</span>
+                                </label>
+                                <label class="profile-radio-label">
+                                    <input type="radio" name="sex" value="female" class="profile-radio" required>
+                                    <span>Feminino</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="profile-input-group">
+                            <label for="activity-level" class="profile-label">Nível de Atividade</label>
+                            <select id="activity-level" name="activityLevel" class="profile-select" required>
+                                <option value="">Selecione...</option>
+                                <option value="sedentary">Sedentário (pouco ou nenhum exercício)</option>
+                                <option value="light">Levemente ativo (exercício 1-3 dias/semana)</option>
+                                <option value="moderate">Moderadamente ativo (exercício 3-5 dias/semana)</option>
+                                <option value="very">Muito ativo (exercício 6-7 dias/semana)</option>
+                                <option value="extreme">Extremamente ativo (exercício 2x/dia)</option>
+                            </select>
+                        </div>
+
+                        <div class="profile-actions">
+                            <button type="submit" class="btn btn--primary">
+                                💾 Salvar Perfil
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Resumo de Calorias -->
+                    <div id="profile-summary" class="profile-summary" style="display: none;">
+                        <h3 class="profile-summary__title">📊 Resumo do seu Plano</h3>
+
+                        <div class="profile-summary__alert">
+                            🎯 Seu plano está configurado para manutenção de peso com foco em saúde cardiovascular
+                        </div>
+
+                        <div class="profile-summary-grid">
+                            <div class="profile-summary-item">
+                                <div class="profile-summary-item__label">Taxa Metabólica Basal (TMB)</div>
+                                <div class="profile-summary-item__value" id="tmb-value">-</div>
+                            </div>
+                            <div class="profile-summary-item">
+                                <div class="profile-summary-item__label">Calorias Diárias</div>
+                                <div class="profile-summary-item__value profile-summary-item__value--primary" id="daily-calories-value">-</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-distribution">
+                            <h4 class="profile-distribution__title">Distribuição por Refeição</h4>
+                            <div class="profile-distribution-list">
+                                <div class="profile-distribution-item">
+                                    <span class="profile-distribution-item__icon">☀️</span>
+                                    <span class="profile-distribution-item__label">Café da manhã (25%)</span>
+                                    <span class="profile-distribution-item__value" id="breakfast-calories">-</span>
+                                </div>
+                                <div class="profile-distribution-item">
+                                    <span class="profile-distribution-item__icon">🍽️</span>
+                                    <span class="profile-distribution-item__label">Almoço (35%)</span>
+                                    <span class="profile-distribution-item__value" id="lunch-calories">-</span>
+                                </div>
+                                <div class="profile-distribution-item">
+                                    <span class="profile-distribution-item__icon">🥤</span>
+                                    <span class="profile-distribution-item__label">Lanche (15%)</span>
+                                    <span class="profile-distribution-item__value" id="snack-calories">-</span>
+                                </div>
+                                <div class="profile-distribution-item">
+                                    <span class="profile-distribution-item__icon">🌙</span>
+                                    <span class="profile-distribution-item__label">Jantar (25%)</span>
+                                    <span class="profile-distribution-item__value" id="dinner-calories">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Tab: Dicas Práticas -->
         <div id="dicas-panel" class="tab-content" role="tabpanel">
             <div class="card">
@@ -1431,6 +1792,165 @@
             categories.forEach(cat => updateCategoryCount(cat));
         }
 
+        // Profile & Calorie Calculation Functions
+        function calculateTMB(weight, height, age, sex) {
+            // Fórmula Mifflin-St Jeor
+            // Homens: TMB = 10 × peso(kg) + 6.25 × altura(cm) - 5 × idade(anos) + 5
+            // Mulheres: TMB = 10 × peso(kg) + 6.25 × altura(cm) - 5 × idade(anos) - 161
+            const baseCalc = (10 * weight) + (6.25 * height) - (5 * age);
+            const tmb = sex === 'male' ? baseCalc + 5 : baseCalc - 161;
+            return Math.round(tmb);
+        }
+
+        function calculateDailyCalories(tmb, activityLevel) {
+            const activityMultipliers = {
+                sedentary: 1.2,
+                light: 1.375,
+                moderate: 1.55,
+                very: 1.725,
+                extreme: 1.9
+            };
+            const multiplier = activityMultipliers[activityLevel] || 1.2;
+            return Math.round(tmb * multiplier);
+        }
+
+        function getMealCalories(dailyCalories, mealType) {
+            const mealPercentages = {
+                breakfast: 0.25,
+                lunch: 0.35,
+                snack: 0.15,
+                dinner: 0.25
+            };
+            const percentage = mealPercentages[mealType] || 0.25;
+            return Math.round(dailyCalories * percentage);
+        }
+
+        function saveProfile(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const weight = parseFloat(formData.get('weight'));
+            const height = parseInt(formData.get('height'));
+            const age = parseInt(formData.get('age'));
+            const sex = formData.get('sex');
+            const activityLevel = formData.get('activityLevel');
+
+            if (!weight || !height || !age || !sex || !activityLevel) {
+                alert('⚠️ Por favor, preencha todos os campos para calcular suas calorias');
+                return;
+            }
+
+            const tmb = calculateTMB(weight, height, age, sex);
+            const dailyCalories = calculateDailyCalories(tmb, activityLevel);
+
+            const profile = {
+                weight,
+                height,
+                age,
+                sex,
+                activityLevel,
+                goal: 'health',
+                tmb,
+                dailyCalories
+            };
+
+            localStorage.setItem('userProfile', JSON.stringify(profile));
+            updateProfileSummary(profile);
+            updateMealCaloriesDisplay(profile.dailyCalories);
+
+            alert(`✅ Perfil salvo com sucesso! Suas refeições foram ajustadas para ~${dailyCalories} kcal/dia`);
+        }
+
+        function loadProfile() {
+            const profileData = localStorage.getItem('userProfile');
+            if (!profileData) return null;
+
+            try {
+                return JSON.parse(profileData);
+            } catch (e) {
+                console.error('Erro ao carregar perfil:', e);
+                return null;
+            }
+        }
+
+        function updateProfileSummary(profile) {
+            const summaryDiv = document.getElementById('profile-summary');
+            if (!summaryDiv) return;
+
+            summaryDiv.style.display = 'block';
+
+            document.getElementById('tmb-value').textContent = `${profile.tmb} kcal`;
+            document.getElementById('daily-calories-value').textContent = `${profile.dailyCalories} kcal`;
+
+            document.getElementById('breakfast-calories').textContent = `${getMealCalories(profile.dailyCalories, 'breakfast')} kcal`;
+            document.getElementById('lunch-calories').textContent = `${getMealCalories(profile.dailyCalories, 'lunch')} kcal`;
+            document.getElementById('snack-calories').textContent = `${getMealCalories(profile.dailyCalories, 'snack')} kcal`;
+            document.getElementById('dinner-calories').textContent = `${getMealCalories(profile.dailyCalories, 'dinner')} kcal`;
+        }
+
+        function populateProfileForm(profile) {
+            if (!profile) return;
+
+            document.getElementById('weight').value = profile.weight;
+            document.getElementById('height').value = profile.height;
+            document.getElementById('age').value = profile.age;
+
+            const sexRadio = document.querySelector(`input[name="sex"][value="${profile.sex}"]`);
+            if (sexRadio) sexRadio.checked = true;
+
+            document.getElementById('activity-level').value = profile.activityLevel;
+
+            updateProfileSummary(profile);
+        }
+
+        function updateMealCaloriesDisplay(dailyCalories) {
+            if (!dailyCalories) {
+                // Remove todos os badges se não houver perfil
+                document.querySelectorAll('.meal__calories').forEach(el => el.remove());
+                return;
+            }
+
+            const breakfastCals = getMealCalories(dailyCalories, 'breakfast');
+            const lunchCals = getMealCalories(dailyCalories, 'lunch');
+            const snackCals = getMealCalories(dailyCalories, 'snack');
+            const dinnerCals = getMealCalories(dailyCalories, 'dinner');
+
+            // Mapear emojis para tipos de refeição
+            const mealTypeMap = {
+                '☀️': breakfastCals,
+                '🍽️': lunchCals,
+                '🥤': snackCals,
+                '🌙': dinnerCals
+            };
+
+            document.querySelectorAll('.meal').forEach(meal => {
+                // Remove badge existente se houver
+                const existingBadge = meal.querySelector('.meal__calories');
+                if (existingBadge) existingBadge.remove();
+
+                const timeElement = meal.querySelector('.meal__time');
+                if (!timeElement) return;
+
+                const timeText = timeElement.textContent;
+                let calories = 0;
+
+                // Identifica o tipo de refeição pelo emoji
+                for (const [emoji, cals] of Object.entries(mealTypeMap)) {
+                    if (timeText.includes(emoji)) {
+                        calories = cals;
+                        break;
+                    }
+                }
+
+                if (calories > 0) {
+                    const badge = document.createElement('div');
+                    badge.className = 'meal__calories';
+                    badge.textContent = `~${calories} kcal`;
+                    meal.appendChild(badge);
+                }
+            });
+        }
+
         function clearShoppingList() {
             if (confirm('Tem certeza que deseja desmarcar todos os itens?')) {
                 const checkboxes = document.querySelectorAll('.shopping-item__checkbox');
@@ -1457,6 +1977,13 @@
                 }
             });
             updateProgress();
+
+            // Load user profile and update calorie display
+            const profile = loadProfile();
+            if (profile) {
+                populateProfileForm(profile);
+                updateMealCaloriesDisplay(profile.dailyCalories);
+            }
 
             const savedTab = localStorage.getItem('activeTab');
             if (savedTab && document.getElementById(`${savedTab}-panel`)) {
